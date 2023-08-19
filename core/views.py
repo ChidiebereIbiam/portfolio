@@ -25,6 +25,7 @@ def home(request):
         new_subject = f"Message - from {name}"
 
         send_mail(new_subject, message, email_from, recipient_list)
+        print("Sent")
 
         redirect("home")
         
