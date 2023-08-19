@@ -19,6 +19,7 @@ class Profile(models.Model):
     facebook = models.URLField(max_length=200, null=True, blank=True)
     twitter = models.URLField(max_length=200, null=True, blank=True)
     google = models.URLField(max_length=200, null=True, blank=True)
+    linkedin = models.URLField(max_length=200, null=True, blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
@@ -26,7 +27,7 @@ class Profile(models.Model):
 class Service(models.Model):
     name = models.CharField(max_length=150)
     description = models.CharField(max_length=250)
-    icon = models.ImageField(upload_to="service/")
+    icon_class = models.CharField(max_length=250, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -54,7 +55,8 @@ class Experience(models.Model):
         return f"{self.title} | {self.company_name}"
 
 class Project(models.Model):
-    title = models.TextField()
+    title = models.CharField(max_length=250, null=True)
+    project_info = models.TextField()
     client = models.CharField(max_length=250)
     industry = models.CharField(max_length=250)
     technology = models.CharField(max_length=250)
@@ -76,3 +78,11 @@ class Contact (models.Model):
 
     def __str__(self):
         return self.email
+    
+
+class Skills (models.Model):
+    name = models.CharField(max_length=250, unique=True)
+    level_of_expertise = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
