@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['chidiebere.up.railway.app', '127.0.0.1', 'danielikenga.up.railway.app']
 
-CSRF_TRUSTED_ORIGINS = ['https://chidiebere.up.railway.app/','https://danielikenga.up.railway.app/',]
+CSRF_TRUSTED_ORIGINS = ['https://chidiebere.up.railway.app/','https://danielikenga.up.railway.app/','https://danielikenga.up.railway.app',]
 
 # Application definition
 
