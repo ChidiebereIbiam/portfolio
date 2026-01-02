@@ -1,530 +1,401 @@
 ﻿<!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{% static 'images/logo.png' %}" rel="icon">
-    <title>{{profile.first_name}} {{profile.last_name}}- Personal Portfolio</title>
-    <meta name="description" content="">
-    <meta name="author" content="chidiebereorjiibiam7@gmail.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chidiebere Ibiam | Software Engineer</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Embedding core styles for the preview */
+        :root {
+            --background: #0a0a0a;
+            --foreground: #ededed;
+        }
 
-
-    <!-- Stylesheet
-============================== -->
-    <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
-    <!-- Font Awesome Icon -->
-    <link rel="stylesheet" type="text/css" href="{% static 'vendor/font-awesome/css/all.min.css' %}">
-    <!-- Owl Carousel -->
-    <link rel="stylesheet" type="text/css" href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}">
-    <!-- Magnific Popup -->
-    <link rel="stylesheet" type="text/css" href="{% static 'vendor/magnific-popup/magnific-popup.min.css' %}">
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}">
-    <!-- Colors Css -->
-    <link id="color-switcher" type="text/css" rel="stylesheet" href="#">
+        .grid-lines {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+    </style>
 </head>
 
-<body class="side-header" data-bs-spy="scroll" data-bs-target="#header-nav" data-bs-offset="1">
+<body
+    class="bg-[#0a0a0a] text-[#ededed] font-sans antialiased overflow-x-hidden selection:bg-white selection:text-black">
+    <!-- Background Grid -->
+    <div class="fixed inset-0 grid-lines pointer-events-none z-0"></div>
 
-    
-    <!-- Preloader End -->
+    <!-- Top Progress Bar -->
+    <div class="fixed top-0 left-0 h-[2px] bg-white/20 w-full z-50">
+        <div id="progress" class="h-full bg-white transition-all duration-150" style="width: 0%"></div>
+    </div>
 
-    <!-- Document Wrapper   
-=============================== -->
-    <div id="main-wrapper">
-        <!-- Header
-  ============================ -->
-        <header id="header" class="sticky-top">
-            <!-- Navbar -->
-            <nav class="primary-menu navbar navbar-expand-lg navbar-dark bg-dark border-bottom-0">
-                <div class="container-fluid position-relative h-100 flex-lg-column ps-3 px-lg-3 pt-lg-3 pb-lg-2">
-
-                    <!-- Logo -->
-                    <a href="#" class="mb-lg-auto mt-lg-4">
-                        <span class="bg-dark-2 rounded-pill p-2 mb-lg-1 d-none d-lg-inline-block">
-                            <img class="img-fluid rounded-pill d-block" src="/media/{{profile.profile_photo}}"
-                                title="I'm {{profile.first_name}}" alt="">
-                        </span>
-                        <h1 class="text-5 text-white text-center mb-0 d-lg-block">{{profile.first_name}}
-                            {{profile.last_name}}</h1>
-                    </a>
-                    <!-- Logo End -->
-
-                    <div id="header-nav" class="collapse navbar-collapse w-100 my-lg-auto">
-                        <ul class="navbar-nav text-lg-center my-lg-auto py-lg-3">
-                            <li class="nav-item"><a class="nav-link smooth-scroll active" href="#home">Home</a></li>
-                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#about">About Me</a></li>
-                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#services">What I Do</a></li>
-                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#resume">Resume</a></li>
-                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#portfolio">Portfolio</a></li>
-                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <ul class="social-icons social-icons-muted social-icons-sm mt-lg-auto ms-auto ms-lg-0 d-flex">
-
-                        <li class="social-icons-facebook"><a data-bs-toggle="tooltip" title="Facebook"
-                                href="{{profile.facebook}}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                        <li class="social-icons-twitter"><a data-bs-toggle="tooltip" title="Twitter"
-                                href="{{profile.twitter}}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                        <li class="social-icons-dribbble"><a data-bs-toggle="tooltip" title="Dribbble"
-                                data-bs-placement="top" href="{{profile.linkedin}}" target="_blank"><i
-                                    class="fab fa-linkedin"></i></a></li>
-                        <li class="social-icons-github"><a data-bs-toggle="tooltip" title="GitHub"
-                                data-bs-placement="top" href="{{profile.github}}" target="_blank"><i
-                                    class="fab fa-github"></i></a></li>
-                    </ul>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#header-nav"><span></span><span></span><span></span></button>
-                </div>
-            </nav>
-            <!-- Navbar End -->
-        </header>
-        <!-- Header End -->
-
-        <!-- Content
-  ============================================= -->
-        <div id="content" role="main">
-
-            <!-- Intro
-    ============================================= -->
-            <section id="home">
-                <div class="hero-wrap">
-                    <div class="hero-mask opacity-8 bg-dark"></div>
-                    <div class="hero-bg parallax" style="background-image:url({% static 'images/intro-bg.jpg' %});">
-                    </div>
-                    <div class="hero-content section d-flex min-vh-100">
-                        <div class="container my-auto">
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <div class="typed-strings">
-                                        <p>I'm {{profile.first_name}} {{profile.last_name}}</p>
-                                        <p>I'm a {{profile.role}}.</p>
-                                        <p>I'm a Freelancer.</p>
-
-                                    </div>
-                                    <p class="text-7 fw-500 text-white mb-2 mb-md-3">Welcome</p>
-                                    <h2 class="text-16 fw-600 text-white mb-2 mb-md-3"><span class="typed"></span></h2>
-                                    <p class="text-5 text-light mb-4">based in {{profile.location}}</p>
-                                    <a href="#contact"
-                                        class="btn btn-outline-primary rounded-pill shadow-none smooth-scroll mt-2">Hire
-                                        Me</a>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#about" class="scroll-down-arrow text-white smooth-scroll"><span class="animated"><i
-                                    class="fa fa-chevron-down"></i></span></a>
-                    </div>
-                </div>
-            </section>
-            <!-- Intro end -->
-
-            <!-- About
-    ============================================= -->
-            <section id="about" class="section bg-dark-1">
-                <div class="container px-lg-5">
-                    <!-- Heading -->
-                    <div class="position-relative d-flex text-center mb-5">
-                        <h2 class="text-24 text-muted opacity-1 text-uppercase fw-600 w-100 mb-0">About Me</h2>
-                        <p class="text-9 text-white fw-600 position-absolute w-100 align-self-center lh-base mb-0">Know
-                            Me More<span
-                                class="heading-separator-line border-bottom border-3 border-primary d-block mx-auto"></span>
-                        </p>
-                    </div>
-                    <!-- Heading end-->
-
-                    <div class="row gy-5">
-                        <div class="col-lg-7 col-xl-8 text-center text-lg-start">
-                            <h2 class="text-7 text-white fw-600 mb-3">I'm <span
-                                    class="text-primary">{{profile.first_name}} {{profile.last_name}},</span> a
-                                {{profile.role}}</h2>
-                            <p class="text-white-50">{{profile.about_me}}</p>
-                        </div>
-                        <div class="col-lg-5 col-xl-4">
-                            <div class="ps-lg-4">
-                                <ul class="list-style-2 list-style-light text-light">
-                                    <li><span class="fw-600 me-2">Name:</span>{{profile.first_name}}
-                                        {{profile.last_name}}</li>
-                                    <li><span class="fw-600 me-2">Email:</span><a
-                                            href="mailto:{{profile.email}}">{{profile.email}} </a></li>
-                                    {% comment %} <li><span class="fw-600 me-2">Age:</span>28</li> {% endcomment %}
-                                    <li class="border-0"><span class="fw-600 me-2">From:</span>{{profile.location}}</li>
-                                </ul>
-                                {% if profile.cv %}
-                                <a href="{{profile.cv.url}}" class="btn btn-primary rounded-pill">Download CV</a>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="brands-grid separator-border separator-border-light mt-5">
-                        <div class="row">
-                            <div class="col-6 col-md-3">
-                                <div class="featured-box text-center">
-                                    <h4 class="text-12 text-white-50 mb-0"><span class="counter" data-from="0"
-                                            data-to="{{profile.years_of_experience}}">{{profile.years_of_experience}}</span>+
-                                    </h4>
-                                    <p class="text-light mb-0">Years Experiance</p>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="featured-box text-center">
-                                    <h4 class="text-12 text-white-50 mb-0"><span class="counter" data-from="0"
-                                            data-to="{{profile.happy_clients}}">{{profile.happy_clients}}</span>+</h4>
-                                    <p class="text-light mb-0">Happy Clients</p>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="featured-box text-center">
-                                    <h4 class="text-12 text-white-50 mb-0"><span class="counter" data-from="0"
-                                            data-to="{{project_count}}">{{project_count}}</span>+</h4>
-                                    <p class="text-light mb-0">Projects Done</p>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="featured-box text-center">
-                                    <h4 class="text-12 text-white-50 mb-0"><span class="counter" data-from="0"
-                                            data-to="{{profile.awards}}">{{profile.awards}}</span></h4>
-                                    <p class="text-light mb-0">Get Awards</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- About end -->
-
-            <!-- Services
-    ============================================= -->
-            <section id="services" class="section bg-dark-2">
-                <div class="container px-lg-5">
-                    <!-- Heading -->
-                    <div class="position-relative d-flex text-center mb-5">
-                        <h2 class="text-24 text-white-50 opacity-1 text-uppercase fw-600 w-100 mb-0">Services</h2>
-                        <p class="text-9 text-white fw-600 position-absolute w-100 align-self-center lh-base mb-0">What
-                            I Do?<span
-                                class="heading-separator-line border-bottom border-3 border-primary d-block mx-auto"></span>
-                        </p>
-                    </div>
-                    <!-- Heading end-->
-
-                    <div class="row">
-                        <div class="col-lg-11 mx-auto">
-                            <div class="row">
-
-                                {% for service in services %}
-                                <div class="col-md-6">
-                                    <div class="featured-box style-3 mb-5">
-                                        <div class="featured-box-icon text-primary bg-dark-1 shadow-sm rounded"> <i
-                                                class="{{service.icon_class}}"></i> </div>
-                                        <h3 class="text-white">{{service.name}}</h3>
-                                        <p class="text-white-50 mb-0">{{service.description}}</p>
-                                    </div>
-                                </div>
-                                {% endfor %}
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Services end -->
-
-            <!-- Resume
-    ============================================= -->
-            <section id="resume" class="section bg-dark-1">
-                <div class="container px-lg-5">
-                    <!-- Heading -->
-                    <div class="position-relative d-flex text-center mb-5">
-                        <h2 class="text-24 text-muted opacity-1 text-uppercase fw-600 w-100 mb-0">Summary</h2>
-                        <p class="text-9 text-white fw-600 position-absolute w-100 align-self-center lh-base mb-0">
-                            Resume<span
-                                class="heading-separator-line border-bottom border-3 border-primary d-block mx-auto"></span>
-                        </p>
-                    </div>
-                    <!-- Heading end-->
-
-                    <div class="row gx-5">
-                        <!-- My Education -->
-                        <div class="col-md-6">
-                            <h2 class="text-6 text-white fw-600 mb-4">My Education</h2>
-
-                            {% for education in educations %}
-                            <div class="bg-dark rounded p-4 mb-4">
-                                <p class="badge bg-danger text-2 fw-400">{{education.start_date}} -
-                                    {{education.end_date}}</p>
-                                <h3 class="text-5 text-white">{{education.field_of_study}} ({{education.degree}})</h3>
-                                <p class="text-primary">{{education.school}}</p>
-                                <p class="text-white-50 mb-0"></p>
-                            </div>
-                            {% endfor %}
-
-                        </div>
-
-                        <!-- My Experience -->
-                        <div class="col-md-6">
-                            <h2 class="text-6 text-white fw-600 mb-4">My Experience</h2>
-                            {% for experience in experiences %}
-                            <div class="bg-dark rounded p-4 mb-4">
-                                <p class="badge bg-danger text-2 fw-400">{{experience.start_date}} -
-                                    {% if experience.end_date %}
-                                    {{experience.end_date}}
-                                    {% else %}
-                                    Till Date
-                                    {% endif %}
-                                </p>
-                                <h3 class="text-5 text-white">{{experience.title}}</h3>
-                                <p class="text-primary">{{experience.company_name}}</p>
-                                <p class="text-white-50 mb-0">{{experience.description| safe}}</p>
-                            </div>
-                            {% endfor %}
-
-
-                        </div>
-                    </div>
-                    <!-- My Skills -->
-                    <h2 class="text-6 text-white fw-600 mt-4 mb-4">My Skills</h2>
-                    <div class="row gx-5">
-                        <div class="col-md-6">
-                            {% for skill in skill1 %}
-                            <p class="text-light fw-500 text-start mb-2">{{skill.name}} <span
-                                    class="float-end">{{skill.level_of_expertise}}%</span></p>
-                            <div class="progress progress-sm bg-dark mb-4">
-                                <div class="progress-bar" role="progressbar"
-                                    style="width: {{skill.level_of_expertise}}%"
-                                    aria-valuenow="{{skill.level_of_expertise}}" aria-valuemin="0" aria-valuemax="100">
-                                </div>
-                            </div>
-                            {% endfor %}
-
-                        </div>
-                        <div class="col-md-6">
-
-                            {% for skill in skill2 %}
-                            <p class="text-light fw-500 text-start mb-2">{{skill.name}} <span
-                                    class="float-end">{{skill.level_of_expertise}}%</span></p>
-                            <div class="progress progress-sm bg-dark mb-4">
-                                <div class="progress-bar" role="progressbar"
-                                    style="width: {{skill.level_of_expertise}}%"
-                                    aria-valuenow="{{skill.level_of_expertise}}" aria-valuemin="0" aria-valuemax="100">
-                                </div>
-                            </div>
-                            {% endfor %}
-
-
-                        </div>
-                    </div>
-                    {% if profile.cv %}
-                    <div class="text-center mt-5"><a href="{{profile.cv.url}}"
-                            class="btn btn-outline-secondary rounded-pill shadow-none">Download CV <span class="ms-1"><i
-                                    class="fas fa-download"></i></span></a></div>
-                    {% endif %}
-                </div>
-            </section>
-            <!-- Resume end -->
-
-            <!-- Portfolio
-    ============================================= -->
-            <section id="portfolio" class="section bg-dark-2">
-                <div class="container px-lg-5">
-                    <!-- Heading -->
-                    <div class="position-relative d-flex text-center mb-5">
-                        <h2 class="text-24 text-white-50 opacity-1 text-uppercase fw-600 w-100 mb-0">Portfolio</h2>
-                        <p class="text-9 text-white fw-600 position-absolute w-100 align-self-center lh-base mb-0">My
-                            Work<span
-                                class="heading-separator-line border-bottom border-3 border-primary d-block mx-auto"></span>
-                        </p>
-                    </div>
-                    <!-- Heading end-->
-
-                    <!-- Filter Menu -->
-                    {% comment %} <ul
-                        class="portfolio-menu nav nav-tabs nav-light justify-content-center border-bottom-0 mb-5">
-                        <li class="nav-item"> <a data-filter="*" class="nav-link active" href="">All</a></li>
-                        <li class="nav-item"> <a data-filter=".design" href="" class="nav-link">Design</a></li>
-                        <li class="nav-item"> <a data-filter=".brand" href="" class="nav-link">Brand</a></li>
-                        <li class="nav-item"> <a data-filter=".photos" href="" class="nav-link">Photos</a></li>
-                    </ul> {% endcomment %}
-                    <!-- Filter Menu end -->
-                    <div class="portfolio popup-ajax-gallery">
-                        <div class="row portfolio-filter g-4">
-                            {% for project in projects %}
-                            <div class="col-sm-6 col-lg-4 brand">
-                                <div class="portfolio-box rounded">
-                                    <div class="portfolio-img rounded"> <img class="img-fluid d-block"
-                                            src="{{project.image1.url}}" alt="">
-                                        <div class="portfolio-overlay"> <a class="popup-ajax stretched-link"
-                                                href="{% url 'project-detail' project.id%}"></a>
-                                            <div class="portfolio-overlay-details">
-                                                <h5 class="text-white fw-400">{{project.title}}</h5>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                           {% endfor %}
-                            
-
-
-                            
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Portfolio end -->
-
-
-
-            <!-- Contact Me
-    ============================================= -->
-            <section id="contact" class="section bg-dark-2">
-                <div class="container px-lg-5">
-                    <!-- Heading -->
-                    <div class="position-relative d-flex text-center mb-5">
-                        <h2 class="text-24 text-white-50 opacity-1 text-uppercase fw-600 w-100 mb-0">Contact</h2>
-                        <p class="text-9 text-white fw-600 position-absolute w-100 align-self-center lh-base mb-0">Get
-                            in Touch<span
-                                class="heading-separator-line border-bottom border-3 border-primary d-block mx-auto"></span>
-                        </p>
-                    </div>
-                    <!-- Heading end-->
-                    <div class="row gy-5">
-                        <div class="col-md-4 col-xl-4 order-1 order-md-0 text-center text-md-start">
-                            <h2 class="mb-3 text-5 text-white text-uppercase">Address</h2>
-                            <p class="text-3 text-light mb-4">{{contact.address}}<br> </p>
-                            <p class="text-3 text-light mb-1"><span class="text-primary text-4 me-2"><i
-                                        class="fas fa-phone"></i></span>{{contact.phone1}}</p>
-                            <p class="text-3 text-light mb-1"><span class="text-primary text-4 me-2"><i
-                                        class="fas fa-fax"></i></span>{{contact.phone2}}</p>
-                            <p class="text-3 text-light mb-4"><span class="text-primary text-4 me-2"><i
-                                        class="fas fa-envelope"></i></span>{{contact.email}}</p>
-                            <h2 class="mb-3 text-5 text-white text-uppercase">Follow Me</h2>
-                            <ul class="social-icons social-icons-muted justify-content-center justify-content-md-start">
-                                <li class="social-icons-twitter"><a data-bs-toggle="tooltip" href="{{profile.linkedin}}"
-                                        target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
-                                <li class="social-icons-twitter"><a data-bs-toggle="tooltip" href="{{profile.twitter}}"
-                                        target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                <li class="social-icons-facebook"><a data-bs-toggle="tooltip"
-                                        href="{{profile.facebook}}" target="_blank" title="Facebook"><i
-                                            class="fab fa-facebook-f"></i></a></li>
-                                <li class="social-icons-google"><a data-bs-toggle="tooltip" href="{{profile.google}}"
-                                        target="_blank" title="Google"><i class="fab fa-google"></i></a></li>
-                                <li class="social-icons-github"><a data-bs-toggle="tooltip" href="{{profile.github}}"
-                                        target="_blank" title="GitHub"><i class="fab fa-github"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-8 col-xl-8 order-0 order-md-1">
-                            <h2 class="mb-3 text-5 text-white text-uppercase text-center text-md-start">Send us a note
-                            </h2>
-                            <form class="form-dark" method="post">
-                                {% csrf_token %}
-                                <div class="row g-4">
-                                    <div class="col-xl-6">
-                                        <input name="name" type="text" class="form-control" required=""
-                                            placeholder="Name">
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <input name="email" type="email" class="form-control" required=""
-                                            placeholder="Email">
-                                    </div>
-                                    <div class="col">
-                                        <textarea name="form-message" class="form-control" rows="5" required=""
-                                            placeholder="Tell us more about your needs........"></textarea>
-                                    </div>
-                                </div>
-                                <p class="text-center mt-4 mb-0">
-                                    <button class="btn btn-primary rounded-pill d-inline-flex" type="submit">Send
-                                        Message</button>
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Contact Me end -->
-
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-40 px-6 py-6 flex justify-between items-center mix-blend-difference">
+        <div class="font-mono text-xs font-bold tracking-tighter uppercase">CHIDIEBERE IBIAM</div>
+        <div class="flex gap-8 font-mono text-[10px] tracking-widest uppercase text-zinc-400">
+            <a href="#experience" class="hover:text-white transition-colors">Experience</a>
+            <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+            <a href="#contact" class="hover:text-white transition-colors">Contact</a>
         </div>
-        <!-- Content end -->
+    </nav>
 
-        <!-- Footer
-  ============================================= -->
-        <footer id="footer" class="section footer-dark bg-dark-1">
-            <div class="container px-lg-5">
-                <div class="row">
-                    <div class="col-lg-6 text-center text-lg-start">
-                        <p class="mb-3 mb-lg-0">Copyright © 2023 <a href="#" class="fw-500">Chidiebere</a>. All Rights
-                            Reserved.</p>
-                    </div>
+    <main class="relative z-10 max-w-6xl mx-auto px-6 pt-48 pb-32">
+        <!-- Hero Section -->
+        <header class="mb-48 max-w-4xl">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] font-mono text-zinc-400 mb-8 uppercase tracking-widest">
+                <span class="relative flex h-1.5 w-1.5">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+                </span>
+                Production Systems Engineer
+            </div>
 
+            <h1 class="text-6xl md:text-9xl font-bold tracking-tighter leading-[0.9] mb-12">
+                SOFTWARE <br />
+                <span class="text-zinc-600">ENGINEER</span>
+            </h1>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
+                <p class="text-xl text-zinc-400 leading-relaxed font-light">
+                    Software engineer specializing in backend-heavy, production-grade systems using <span
+                        class="text-white">Python</span>. I design, build, and operate scalable web platforms,
+                    AI-powered infrastructure, and secure domain-critical systems across healthcare, legal-tech, and
+                    data-driven products.
+                </p>
+                <div class="flex flex-col gap-4 font-mono text-[10px] tracking-widest uppercase">
+                    <a href="#projects"
+                        class="group flex items-center justify-between py-4 border-b border-white/10 hover:border-white transition-colors">
+                        <span>Explore Systems</span>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                            class="transform -rotate-45 group-hover:rotate-0 transition-transform">
+                            <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    </a>
+                    <a href="https://linkedin.com/in/chidiebereibiam" target="_blank"
+                        class="group flex items-center justify-between py-4 border-b border-white/10 hover:border-white transition-colors">
+                        <span>Network</span>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                            class="transform -rotate-45 group-hover:rotate-0 transition-transform">
+                            <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    </a>
                 </div>
             </div>
+        </header>
+
+        <!-- Stats Grid -->
+        <section
+            class="grid grid-cols-1 md:grid-cols-3 gap-0 border border-white/10 mb-48 divide-y md:divide-y-0 md:divide-x divide-white/10">
+            <div class="p-12 space-y-4">
+                <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Efficiency GAIN</div>
+                <div class="text-6xl font-bold tracking-tighter">30<span class="text-zinc-600">%</span></div>
+                <p class="text-zinc-400 text-sm leading-relaxed">Designed and deployed context-aware AI pipelines using LangChain and LangGraph, improving data retrieval efficiency and reducing redundant computation in production systems.</p>
+            </div>
+            <div class="p-12 space-y-4">
+                <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Latency CUT</div>
+                <div class="text-6xl font-bold tracking-tighter">40<span class="text-zinc-600">%</span></div>
+                <p class="text-zinc-400 text-sm leading-relaxed">Reduced API response times through query optimization, caching layers, and backend profiling across high-traffic Django applications.</p>
+            </div>
+            <div class="p-12 space-y-4">
+                <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Leadership</div>
+                <div class="text-6xl font-bold tracking-tighter">05<span class="text-zinc-600">.</span></div>
+                <p class="text-zinc-400 text-sm leading-relaxed">Led and mentored distributed engineering teams across multiple time zones, driving architecture decisions and delivery for backend and AI-heavy platforms.</p>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="mb-48">
+            <div class="flex items-baseline justify-between mb-24 border-b border-white/10 pb-8">
+                <h2 class="text-4xl font-bold tracking-tighter uppercase">Trajectory</h2>
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">2021 — 2026</span>
+            </div>
+
+            <div class="space-y-32">
+                <!-- 9jaTelemedicine -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 group">
+                    <div class="space-y-2">
+                        <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Present ·
+                            9jaTelemedicine</div>
+                        <h3 class="text-3xl font-bold tracking-tight group-hover:text-zinc-400 transition-colors">
+                            Software Engineer (Full-Stack / Backend Focus)</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <p class="text-zinc-400 leading-relaxed font-light">
+                            Owning end-to-end development of secure, production healthcare platforms. I translate Figma designs into high-quality frontend implementations, design backend architectures handling sensitive data, and deploy scalable systems to the cloud. I lead technical execution across projects, from system design to production operations.
+                        </p>
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 font-mono text-[10px] text-zinc-500 uppercase">
+                            <span>#Django</span>
+                            <span>#SystemDesign</span>
+                            <span>#HealthTech</span>
+                            </span>#CloudDeployment</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kuhstomatica -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 group">
+                    <div class="space-y-2">
+                        <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">2024 · Kuhstomatica
+                        </div>
+                        <h3 class="text-3xl font-bold tracking-tight group-hover:text-zinc-400 transition-colors">
+                            Backend / AI Systems Engineer</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <p class="text-zinc-400 leading-relaxed font-light">
+                            Designing and building AI-first backend infrastructure using LangChain and LangGraph. I develop Retrieval-Augmented Generation (RAG) systems, document ingestion pipelines, and semantic search capabilities powering an enterprise-grade eDiscovery platform for legal professionals.
+                        </p>
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 font-mono text-[10px] text-zinc-500 uppercase">
+                            <span>#Langchain</span>
+                            <span>#RAG</span>
+                            <span>#DistributedSystems</span>
+                            <span>#LegalTech</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dowell-->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 group">
+                    <div class="space-y-2">
+                        <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">2023 — 2024 · Dowell Research (UK)</div>
+                        <h3 class="text-3xl font-bold tracking-tight group-hover:text-zinc-400 transition-colors">Backend Engineer</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <p class="text-zinc-400 leading-relaxed font-light">
+                            Led backend development for internal platforms including a real-time ticketing system. Owned API design, WebSocket infrastructure, and CI/CD automation.
+                        </p>
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 font-mono text-[10px] text-zinc-500 uppercase">
+                            <span>#Backend</span><span>#WebSockets</span><span>#CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ria Consulting -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 group">
+                    <div class="space-y-2">
+                        <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">2022 — 2023 · Ria Consulting</div>
+                        <h3 class="text-3xl font-bold tracking-tight group-hover:text-zinc-400 transition-colors">Backend Engineer</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <p class="text-zinc-400 leading-relaxed font-light">
+                            Built backend services for a CRM system, focusing on scalable APIs, data modeling, and performance optimization.
+                        </p>
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 font-mono text-[10px] text-zinc-500 uppercase">
+                            <span>#Django</span><span>#APIs</span><span>#Databases</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="mb-48">
+            <div class="flex items-baseline justify-between mb-24 border-b border-white/10 pb-8">
+                <h2 class="text-4xl font-bold tracking-tighter uppercase">Stack</h2>
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">Production Focus</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-zinc-400 text-sm leading-relaxed">
+                <div>
+                    <h3 class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-6">Backend</h3>
+                    <ul class="space-y-3">
+                        <li>Python / Django / DRF</li>
+                        <li>REST API Design</li>
+                        <li>Authentication & Authorization</li>
+                        <li>Database Modeling</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-6">Frontend</h3>
+                    <ul class="space-y-3">
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>Bootstrap</li>
+                        <li>Tailwind CSS</li>
+                        <li>HTMX</li>
+                        <li>Figma</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-6">AI & Data Systems</h3>
+                    <ul class="space-y-3">
+                        <li>LangChain & LangGraph</li>
+                        <li>RAG Pipelines</li>
+                        <li>Semantic Search</li>
+                        <li>LLM-Oriented Backend Design</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-6">Infrastructure</h3>
+                    <ul class="space-y-3">
+                        <li>Docker & CI/CD</li>
+                        <li>Cloud Deployment</li>
+                        <li>PostgreSQL / MongoDB / Redis</li>
+                        <li>WebSockets & Realtime Systems</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Projects -->
+        <section id="projects" class="mb-48">
+            <div class="flex items-baseline justify-between mb-24 border-b border-white/10 pb-8">
+                <h2 class="text-4xl font-bold tracking-tighter uppercase">Systems</h2>
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">Production Deployments</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 border border-white/10">
+
+                <a href="https://cashpayclinics.com/" target="_blank" class="bg-[#0a0a0a] p-12 hover:bg-zinc-900/50 transition-colors group">
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-[10px] font-mono text-zinc-500 uppercase">Healthcare Platform</span>
+                        <span class="text-[10px] font-mono text-zinc-600">LIVE</span>
+                    </div>
+                    <h3 class="text-3xl font-bold tracking-tighter mb-4">CashPay Clinics</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-8">
+                        Secure healthcare-focused platform supporting clinic operations and payments. Designed backend services, business workflows, and deployed a production-grade system handling sensitive data.
+                    </p>
+                    <div class="flex gap-4 font-mono text-[9px] text-zinc-600">
+                        <span>DJANGO</span><span>POSTGRES</span><span>CLOUD</span>
+                    </div>
+                </a>
+
+                <a href="https://3astherapyservices.com/" target="_blank" class="bg-[#0a0a0a] p-12 hover:bg-zinc-900/50 transition-colors group">
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-[10px] font-mono text-zinc-500 uppercase">Health Services</span>
+                        <span class="text-[10px] font-mono text-zinc-600">LIVE</span>
+                    </div>
+                    <h3 class="text-3xl font-bold tracking-tighter mb-4">3AS Therapy Services</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-8">
+                        End-to-end system for therapy services, scheduling, and client engagement. Owned frontend, backend architecture, and deployment pipeline.
+                    </p>
+                    <div class="flex gap-4 font-mono text-[9px] text-zinc-600">
+                        <span>FULLSTACK</span><span>DJANGO</span><span>DEPLOYMENT</span>
+                    </div>
+                </a>
+
+                <a href="https://www.taskarise.com/" target="_blank" class="bg-[#0a0a0a] p-12 hover:bg-zinc-900/50 transition-colors group">
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-[10px] font-mono text-zinc-500 uppercase">Workflow System</span>
+                        <span class="text-[10px] font-mono text-zinc-600">LIVE</span>
+                    </div>
+                    <h3 class="text-3xl font-bold tracking-tighter mb-4">TaskArise</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-8">
+                        Task and workflow management platform with structured backend logic and scalable APIs supporting business operations.
+                    </p>
+                    <div class="flex gap-4 font-mono text-[9px] text-zinc-600">
+                        <span>API_DESIGN</span><span>BACKEND</span>
+                    </div>
+                </a>
+
+                <a href="https://247digitalhub.com/" target="_blank" class="bg-[#0a0a0a] p-12 hover:bg-zinc-900/50 transition-colors group">
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-[10px] font-mono text-zinc-500 uppercase">Business Platform</span>
+                        <span class="text-[10px] font-mono text-zinc-600">LIVE</span>
+                    </div>
+                    <h3 class="text-3xl font-bold tracking-tighter mb-4">247 Digital Hub</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-8">
+                        Digital services platform delivering client-facing systems with performance-focused backend services and cloud deployment.
+                    </p>
+                    <div class="flex gap-4 font-mono text-[9px] text-zinc-600">
+                        <span>SCALABILITY</span><span>CLOUD</span>
+                    </div>
+                </a>
+
+                <a href="https://cropshore.com/" target="_blank" class="bg-[#0a0a0a] p-12 hover:bg-zinc-900/50 transition-colors group">
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-[10px] font-mono text-zinc-500 uppercase">Ecommerce Platform</span>
+                        <span class="text-[10px] font-mono text-zinc-600">LIVE</span>
+                    </div>
+                    <h3 class="text-3xl font-bold tracking-tighter mb-4">CropShore</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-8">
+                        Ecommerce platform for agricultural products and services. Designed and deployed a production-grade system supporting high-traffic and secure transactions.
+                    </p>
+                    <div class="flex gap-4 font-mono text-[9px] text-zinc-600">
+                        <span>E-COMMERCE</span><span>SECURITY</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+
+        <!-- Contact/Footer -->
+        <footer id="contact" class="pt-48 border-t border-white/10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-24 items-start mb-48">
+                <h2 class="text-5xl md:text-7xl font-bold tracking-tighter uppercase leading-none">
+                    Next Phase <br />
+                    <span class="text-zinc-600">Starts Here</span>
+                </h2>
+                <div class="space-y-12">
+                    <p class="text-xl text-zinc-400 font-light leading-relaxed">
+                         Open to backend, full-stack, and applied AI engineering roles focused on building and scaling production systems.
+                    </p>
+                    <div class="flex flex-col gap-6 font-mono text-xs uppercase tracking-widest">
+                        <a href="mailto:chidiebereorjiibiam7@gmail.com"
+                            class="hover:text-zinc-400 transition-colors">CHIDIEBEREORJIIBIAM7@GMAIL.COM</a>
+                        <div class="flex gap-8">
+                            <a href="{% static 'data/ChidiebereIbiam Resume.pdf' %}"
+                                class="hover:text-zinc-400 transition-colors">Resume</a>
+                            <a href="https://github.com/chidiebere"
+                                class="hover:text-zinc-400 transition-colors">GitHub</a>
+                            <a href="https://linkedin.com/in/chidiebereibiam"
+                                class="hover:text-zinc-400 transition-colors">LinkedIn</a>
+                            <a href="https://twitter.com/chidiebereOI"
+                                class="hover:text-zinc-400 transition-colors">Twitter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="flex flex-col md:flex-row justify-between items-center py-12 border-t border-white/5 font-mono text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
+                <span>© 2026 CHIDIEBERE IBIAM</span>
+                <span>DESIGNED FOR PERFORMANCE</span>
+            </div>
         </footer>
-        <!-- Footer end -->
+    </main>
 
-    </div>
-    <!-- Document Wrapper end -->
+    <script>
+        // Progress Scroll
+        window.onscroll = function () {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress").style.width = scrolled + "%";
+        };
 
-    <!-- Back to Top
-============================================= -->
-    <a id="back-to-top" class="rounded-circle" data-bs-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i
-            class="fa fa-chevron-up"></i></a>
+        // Scroll reveal logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-12');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
 
-
-
-
-
-    <!-- Styles Switcher -->
-    <div id="styles-switcher" class="right">
-        <h2 class="text-3">Color Switcher</h2>
-        <hr>
-        <ul>
-            <li class="indigo" data-bs-toggle="tooltip" title="Indigo" data-path="css/color-indigo.css"></li>
-            <li class="blue" data-bs-toggle="tooltip" title="Blue" data-path="css/color-blue.css"></li>
-            <li class="purple" data-bs-toggle="tooltip" title="Purple" data-path="css/color-purple.css"></li>
-            <li class="cyan" data-bs-toggle="tooltip" title="Cyan" data-path="css/color-cyan.css"></li>
-            <li class="red" data-bs-toggle="tooltip" title="Red" data-path="css/color-red.css"></li>
-            <li class="pink" data-bs-toggle="tooltip" title="Pink" data-path="css/color-pink.css"></li>
-            <li class="green" data-bs-toggle="tooltip" title="Green" data-path="css/color-green.css"></li>
-            <li class="yellow" data-bs-toggle="tooltip" title="Yellow" data-path="css/color-yellow.css"></li>
-            <li class="orange" data-bs-toggle="tooltip" title="Orange" data-path="css/color-orange.css"></li>
-            <li class="brown" data-bs-toggle="tooltip" title="Brown" data-path="css/color-brown.css"></li>
-        </ul>
-        <button class="btn btn-dark btn-sm w-100 border-0 fw-400 rounded-0 shadow-none" id="reset-color">Reset Default
-            Teal</button>
-        <button class="btn switcher-toggle"><i class="fas fa-cog"></i></button>
-    </div>
-    <!-- Styles Switcher End -->
-
-    <!-- JavaScript -->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <!-- Easing -->
-    <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
-    <!-- Appear -->
-    <script src="{% static 'vendor/jquery.appear/jquery.appear.min.js' %}"></script>
-    <!-- Images Loaded -->
-    <script src="{% static 'vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
-    <!-- Counter -->
-    <script src="{% static 'vendor/jquery.countTo/jquery.countTo.min.js' %}"></script>
-    <!-- Parallax Bg -->
-    <script src="{% static 'vendor/parallaxie/parallaxie.min.js' %}"></script>
-    <!-- Typed -->
-    <script src="{% static 'vendor/typed/typed.min.js' %}"></script>
-    <!-- Owl Carousel -->
-    <script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
-    <!-- isotope Portfolio Filter -->
-    <script src="{% static 'vendor/isotope/isotope.pkgd.min.js' %}"></script>
-    <!-- Magnific Popup -->
-    <script src="{% static 'vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
-    <!-- Style Switcher -->
-    <script src="{% static 'js/switcher.min.js' %}"></script>
-    <!-- Custom Script -->
-    <script src="{% static 'js/theme.js' %}"></script>
+        document.querySelectorAll('section, header, footer').forEach(el => {
+            el.classList.add('transition-all', 'duration-[1.2s]', 'opacity-0', 'translate-y-12', 'ease-out');
+            observer.observe(el);
+        });
+    </script>
 </body>
 
 </html>

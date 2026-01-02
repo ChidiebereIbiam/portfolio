@@ -29,9 +29,9 @@ SECRET_KEY = 'django-insecure-+us5u8rqj)f2)129yfgx0x$#^!a%buseh80^o&$0l@jjz%04y3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['chidiebere.up.railway.app', '127.0.0.1', 'danielikenga.up.railway.app']
+ALLOWED_HOSTS = ['chidiebere.up.railway.app', '127.0.0.1', 'horrific-suzi-commutatively.ngrok-free.dev']
 
-CSRF_TRUSTED_ORIGINS = ['https://chidiebere.up.railway.app/','https://danielikenga.up.railway.app/','https://danielikenga.up.railway.app',]
+CSRF_TRUSTED_ORIGINS = ['https://chidiebere.up.railway.app/','https://horrific-suzi-commutatively.ngrok-free.dev']
 
 # Application definition
 
